@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "hello-7bce5": {
+      "hosting": {
+        "angular-covid-tracker": [
+          "hello-7bce5"
+        ]
+      }
+    }
+  }
+}
