@@ -1,0 +1,16 @@
+#bg {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+      
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -99999;
+  }
+
+  .bgClass {
+      position: absolute !important;
+      background-color: #d6d6d6 !important;
+  }
+  
