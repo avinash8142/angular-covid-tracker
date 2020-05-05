@@ -1,7 +1,7 @@
 export interface Covid
 {
     id: string;
-    state: number;
+    state: string;
     stateCode:string;
     confirmedCase: number;
     curedCase: number;

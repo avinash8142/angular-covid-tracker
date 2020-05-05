@@ -13,4 +13,16 @@
       position: absolute !important;
       background-color: #d6d6d6 !important;
   }
+
+  table {
+    width: 100%;
+  }
+
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+  .fatal-color{
+    color: #8D7214;
+  }
+  
   
