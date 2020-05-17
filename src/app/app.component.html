@@ -1,5 +1,40 @@
+<div class="container">
+  <div class="alert alert-danger mt-2 text-center font-weight-bold" role="alert">
+    Coronavirus Outbreak in India
+  </div>
 
-
-<app-covid-tracker></app-covid-tracker>
-
-<router-outlet></router-outlet>
+  <div class="row mt-3">
+    <div class="col">
+      <button type="button" class="btn btn-info">
+        Confirmed <span class="badge badge-warning-mt-2">{{totalCorfirmedCase}}</span>
+      </button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-success">
+        Recovered <span class="badge badge-success-mt-2">{{totalRecoveredCase}}</span>
+      </button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-danger">
+        Deceased <span class="badge badge-light-mt-2">{{totalFatalCase}}</span>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 mt-2 mb-2 border border-info font-weight-bold">State/UT</div>
+    <div class="col-3 mt-2 mb-2 border border-warning font-weight-bold">Confirmed</div>
+    <div class="col-3 mt-2 mb-2 border border-success font-weight-bold">Recovered</div>
+    <div class="col-2 mt-2 mb-2 border border-danger font-weight-bold">Deaths</div>
+  </div>
+  <div class="" *ngFor="let item of covidObj; let i=index">
+    <div class="row">
+      <div class="col-4 mb-2 border border-info rounded">{{item.state}}</div>
+      <div class="col-3 mb-2 border border-warning rounded">{{item.confirmedCase}}</div>
+      <div class="col-3 mb-2 border border-success rounded">{{item.curedCase}}</div>
+      <div class="col-2 mb-2 border border-danger rounded">{{item.death}}</div>
+    </div>
+  </div>
+  </div>
+  <div class="container">
+    <canvas id="canvas"></canvas>
+</div>
