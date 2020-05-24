@@ -6,4 +6,11 @@ export interface Covid
     confirmedCase: number;
     curedCase: number;
     death :number;
+    confirmedCaseDiff: number;
+    curedCaseDiff : number;
+    deathDiff : number;
+    caseDt: string;
+    activeCase: number;
+    activeCaseDiff: number;
+
 }

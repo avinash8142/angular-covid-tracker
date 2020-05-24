@@ -11,4 +11,26 @@
 <body>
   <app-root></app-root>
 </body>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBjmXieki-5vHJ_i3CIW_otwyyFgRMBRV0",
+    authDomain: "hello-7bce5.firebaseapp.com",
+    databaseURL: "https://hello-7bce5.firebaseio.com",
+    projectId: "hello-7bce5",
+    storageBucket: "hello-7bce5.appspot.com",
+    messagingSenderId: "1079288224112",
+    appId: "1:1079288224112:web:a51a0b5e2dbabc1ab1d7b5",
+    measurementId: "G-Z65LXTRSTJ"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
 </html>

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ChartsModule } from 'ng2-charts';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +13,9 @@ import { ChartsModule } from 'ng2-charts';
   imports: [
     BrowserModule,
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

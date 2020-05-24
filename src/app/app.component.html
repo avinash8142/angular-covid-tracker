@@ -4,37 +4,112 @@
   </div>
 
   <div class="row mt-3">
-    <div class="col">
-      <button type="button" class="btn btn-info">
-        Confirmed <span class="badge badge-warning-mt-2">{{totalCorfirmedCase}}</span>
+    <div class="col-3">
+      <button type="button" class="btn btn-info text-uppercase">
+        Confirmed <span class="badge badge-info-mt-2">{{totalCorfirmedCase}}</span>
+        <p style="font-size: 10px;">
+          <fa-icon [icon]="faArrowUp" class="text-white" style="font-size: 10px;"></fa-icon>{{totalConfirmedCaseDiff}}
+        </p>
       </button>
     </div>
-    <div class="col">
-      <button type="button" class="btn btn-success">
+    <div class="col-3">
+      <button type="button" class="btn btn-primary text-uppercase">
+        Active <span class="badge badge-primary-mt-2">{{totalActiveCase}}</span>
+        <p style="font-size: 10px;">
+          <fa-icon [icon]="faArrowUp" class="text-white" style="font-size: 10px;"></fa-icon>{{totalActiveCaseDiff}}
+        </p>
+      </button>
+    </div>
+    <div class="col-3">
+      <button type="button" class="btn btn-success text-uppercase">
         Recovered <span class="badge badge-success-mt-2">{{totalRecoveredCase}}</span>
+        <p style="font-size: 10px;">
+          <fa-icon [icon]="faArrowUp" class="text-white" style="font-size: 10px;"></fa-icon>{{totalRecoveredCaseDiff}}
+        </p>
       </button>
     </div>
-    <div class="col">
-      <button type="button" class="btn btn-danger">
-        Deceased <span class="badge badge-light-mt-2">{{totalFatalCase}}</span>
+    <div class="col-3">
+      <button type="button" class="btn btn-danger text-uppercase">
+        Deceased <span class="badge badge-danger-mt-2">{{totalFatalCase}}</span>
+        <p style="font-size: 10px;">
+          <fa-icon [icon]="faArrowUp" class="text-white" style="font-size: 10px;"></fa-icon>{{totalFatalCaseDiff}}
+        </p>
       </button>
     </div>
   </div>
   <div class="row">
-    <div class="col-4 mt-2 mb-2 border border-info font-weight-bold">State/UT</div>
-    <div class="col-3 mt-2 mb-2 border border-warning font-weight-bold">Confirmed</div>
+    <div class="col-3 mt-2 mb-2 border border-info font-weight-bold">State/UT</div>
+    <div class="col-3 mt-2 mb-2 border border-dark font-weight-bold">Confirmed</div>
     <div class="col-3 mt-2 mb-2 border border-success font-weight-bold">Recovered</div>
-    <div class="col-2 mt-2 mb-2 border border-danger font-weight-bold">Deaths</div>
+    <div class="col-3 mt-2 mb-2 border border-danger font-weight-bold">Deaths</div>
   </div>
-  <div class="" *ngFor="let item of covidObj; let i=index">
+  <div *ngFor="let item of covidObj; let i=index">
     <div class="row">
-      <div class="col-4 mb-2 border border-info rounded">{{item.state}}</div>
-      <div class="col-3 mb-2 border border-warning rounded">{{item.confirmedCase}}</div>
-      <div class="col-3 mb-2 border border-success rounded">{{item.curedCase}}</div>
-      <div class="col-2 mb-2 border border-danger rounded">{{item.death}}</div>
+      <div class="col-3 mb-2 border border-info rounded">{{item.state}}</div>
+      <div class="col-3 mb-2 border border-dark rounded">{{item.confirmedCase}}<span
+          *ngIf="(item.confirmedCaseDiff > 0 )">
+          <fa-icon [icon]="faArrowUp" class="text-success ml-1" style="font-size: 10px;"></fa-icon><span
+            style="font-size: 10px;">{{item.confirmedCaseDiff}}</span>
+        </span></div>
+      <div class="col-3 mb-2 border border-success rounded">{{item.curedCase}}<span
+          *ngIf="(item.curedCaseDiff > 0 )">
+          <fa-icon [icon]="faArrowUp" class="text-success ml-1" style="font-size: 10px;"></fa-icon><span
+            style="font-size: 10px;">{{item.curedCaseDiff}}</span>
+        </span></div>
+      <div class="col-3 mb-2 border border-danger rounded">{{item.death}}<span
+        *ngIf="(item.deathDiff > 0 )"><fa-icon [icon]="faArrowUp"
+          class="text-success ml-1" style="font-size: 10px;"></fa-icon><span
+          style="font-size: 10px;">{{item.deathDiff}}</span></span></div>
     </div>
   </div>
-  </div>
-  <div class="container">
+
+  <div class="mt-3">
     <canvas id="canvas"></canvas>
+  </div>
+  <div class="row mt-3">
+    <div class="col-sm-4">
+      <select name="caseType" class="custom-select" (change)="caseChanged($event.target.value)">
+        <option value="newCase" selected>New Cases</option>
+        <option value="recoveredCase">Recovered Cases</option>
+        <option value="fatalCase">Fatal Cases</option>
+        <option value="activeCase">Active Cases</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <canvas id="lineChartId"></canvas>
+  </div>
+  <div class="row mt-3">
+    <div class="col- ml-2">
+      <select name="state" class="custom-select" [(ngModel)]="code" (change)='stateChanged($event.target.value)'>
+        <option *ngFor='let s of states' [value]='s.stateCode'>{{s.state}}</option>
+
+      </select>
+    </div>
+    <div class="col- ml-3">
+      <select name="stateCase" class="custom-select" [(ngModel)]="caseType"
+        (change)='caseChangedForState($event.target.value)'>
+        <option value="newCase" selected>New Cases</option>
+        <option value="recoveredCase">Recovered Cases</option>
+        <option value="fatalCase">Fatal Cases</option>
+        <option value="activeCase">Active Cases</option>
+
+      </select>
+
+
+    </div>
+
+  </div>
+  <div class="row mt-3">
+    <div class="col-sm-12">
+      <canvas id="lineChartStateId"></canvas>
+    </div>
+
+  </div>
+  <div class="footer">
+    <div class="alert alert-success mt-4 text-center font-weight-bold" role="alert">
+      !! Stay Home Stay Safe !!
+    </div>
+  </div>
 </div>
