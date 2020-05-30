@@ -1,11 +1,18 @@
 <div class="container">
-  <div class="alert alert-danger mt-2 text-center font-weight-bold" role="alert">
-    Welcome to the Covid-19 Dashboard!!
+  <div class="row">
+    <div class="col-sm-12 alert alert-danger text-center font-weight-bold">
+      Welcome to the Covid-19 Dashboard!!
+    </div>
   </div>
-  <div class="badge badge-info-mt-2" style="text-align: center;">This is a COVID-19 dashboard with better data visualization. 
-    Here, you can have a complete picture of different types of cases all over the world.
+  <div class="row">
+    <div class="text-dark ml-2">This is a COVID-19 dashboard with better data
+      visualization.
+      Here, you can have a complete picture of different types of cases all over the world.
+    </div>
   </div>
-  <div class="instructional-text">Please select below to see the respective dashboard.</div>
+  <div class="row">
+    <div class="col- text-dark mt-2 ml-2">Please select below to see the respective dashboard.</div>
+  </div>
   <nav>
     <button mat-button class="mat-button">
       <a routerLink="/world" routerLinkActive="active">World's Dashboard</a>
@@ -17,10 +24,9 @@
       <a routerLink="/state" routerLinkActive="active">Indian-State's Dashboard</a>
     </button>
   </nav>
-  <!-- The routed views render in the <router-outlet>-->
   <router-outlet></router-outlet>
   <div class="footer">
-    <div class="alert alert-danger mt-4 text-center font-weight-bold" role="alert">
+    <div class="alert alert-danger mt-4 text-center font-weight-bold">
       !! Stay Home Stay Safe !!
     </div>
   </div>
