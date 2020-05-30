@@ -209,8 +209,9 @@ export class StateComponent implements OnInit {
         })
         this.listOfStates.push(this.state);
         this.listOfStates.sort((a, b) => a.stateName.localeCompare( b.stateName));
-        this.stateCode = 'IN-MH';
       });
+      this.stateCode = 'IN-MH';
+      this.listOfStates = this.listOfStates.filter(item => item.stateName != 'Unknown*')
       this.getDistrict(this.stateCode);
     });
   }
