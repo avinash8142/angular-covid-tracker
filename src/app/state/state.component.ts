@@ -217,11 +217,21 @@ export class StateComponent implements OnInit {
   }
 
   getDistrict(st: string) {
-    this.pieChartDataComfirmedDistricts = (this.stateAndDistrcitWiseData.find(element =>  element.id == st ).districtData)
-                                            .filter(element => element.confirmed > 100);
+    let distictData = this.stateAndDistrcitWiseData.find(element =>  element.id == st ).districtData;
+    if(distictData.filter(element => element.confirmed > 100).length >= 2){
+      this.pieChartDataComfirmedDistricts = distictData.filter(element => element.confirmed > 100);
+    }
+    else{
+      this.pieChartDataComfirmedDistricts = distictData;
+    }
+    
     this.pieChartComfirmedDistricts = this.pieChartDataComfirmedDistricts.map((item) => item.confirmed);
     this.pieChartLegendsDistricts = this.pieChartDataComfirmedDistricts.map((item) => item.id)
     
+    if(this.pieChartIndia){
+      this.pieChartIndia.destroy();
+    }
+
     this.pieChartIndia = new Chart('canvasIndiaDistrict', {
         type: 'pie',
         data: {
