@@ -1,0 +1,44 @@
+.instructional-text{
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+ }
+
+.box{
+    width: 50%;
+    margin: 10px 10px 10px 10px;
+}
+
+.zone-box{
+    width: 100%;
+    margin: 10px 10px 10px 10px;
+}
+
+.confirmed{
+    border: 2px solid #17a2b8; 
+}
+
+.active{
+    border: 2px solid #007bff;
+}
+
+.recovered{
+    border: 2px solid #28a745;
+}
+
+.deceased{
+    border: 2px solid #dc3545;
+}
+
+.red-zone{
+    border: 2px solid red;
+}
+
+.green-zone{
+    border: 2px solid green;
+}
+
+.orange-zone{
+    border: 2px solid orange;
+}

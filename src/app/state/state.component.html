@@ -1,0 +1,75 @@
+<div id="divState">
+  <div class="instructional-text">As of {{today}}, {{StateWithMaxConfirmedCases}} is leading the chart with maximum confirmed cases.</div>
+  <div class="row mt-3">
+    <div class="col- ml-2 box confirmed">
+      <div class="instructional-text center-align">States having more the 4,000 conformed cases:</div>
+      <div class="mt-3">
+          <canvas id="canvas"></canvas>
+      </div>
+    </div>
+    <div class="col- ml-2 box confirmed">
+      <div class="instructional-text">Please select a state and a case type to have a date-wise view:</div>
+      <div class="row mt-3" style="align-items: center;">
+        <div class="col- ml-2">
+          <select name="state" class="custom-select select" [(ngModel)]="code" (change)='stateChanged($event.target.value)'>
+              <option *ngFor='let s of states' [value]='s.stateCode'>{{s.state}}</option>
+          </select>
+        </div>
+        <div class="col- ml-2">
+          <select name="stateCase" class="custom-select select" [(ngModel)]="caseType" (change)='caseChangedForState($event.target.value)'>
+            <option value="newCase" selected>New Cases</option>
+            <option value="recoveredCase">Recovered Cases</option>
+            <option value="fatalCase">Fatal Cases</option>
+            <option value="activeCase">Active Cases</option>
+          </select>
+        </div>
+      </div>
+      <canvas id="lineChartStateId"></canvas>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col- ml-2">
+      <div class="instructional-text">Please select a state to see the district-wise confirmed cases and zone:</div>
+    </div> 
+    <div class="col- ml-2">
+      <select name="state" class="custom-select" [(ngModel)]="stateCode" (change)='getDistrict($event.target.value)'>
+        <option *ngFor='let s of listOfStates' [value]='s.stateCode'>{{s.stateName}}</option>
+      </select>
+    </div>
+  </div>  
+  <div class="row mt-3 district-box confirmed">
+    <div class="instructional-text">Districts having more than 100 Confirmed cases:</div>
+      <canvas id="canvasIndiaDistrict"></canvas>
+  </div>
+
+  <div class="district-box solid">
+    <div class="instructional-text">List of districts of the selected state falling in different zones:</div>
+    <div class="row mt-3" style="margin-left: 10px;" >
+      <!-- <div class="col- ml-2"> -->
+        <div class="zone-box green-zone">
+          Green zone districts
+          <select class="custom-select" size="10">
+            <option *ngFor="let district of listOfDistrictsInGreenZone"[value]='district.id'>{{district.name}}</option>
+          </select>
+        </div>
+      <!-- </div> -->
+      <!-- <div class="col- ml-2"> -->
+        <div class="zone-box orange-zone">
+          Orange zone districts
+          <select class="custom-select" size="10">
+            <option *ngFor="let district of listOfDistrictsInOrangeZone"[value]='district.id'>{{district.name}}</option>
+          </select>
+        </div>
+      <!-- </div> -->
+      <!-- <div class="col- ml-2"> -->
+        <div class="zone-box red-zone" >
+            Red zone districts 
+            <select class="custom-select" size="10">
+              <option *ngFor="let district of listOfDistrictsInRedZone"[value]='district.id'>{{district.name}}</option>
+            </select>
+          </div>
+      <!-- </div> -->
+    </div>
+  </div>
+</div> 

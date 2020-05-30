@@ -4,7 +4,9 @@ import { Observable, of } from 'rxjs';
 import { CovidByDtWrapper } from './model/CovidByDtWrapper';
 import { ListOfCovids } from './model/ListOfCovids';
 import { States } from './model/States';
+import { CovidSummaryWorld } from './model/CovidSummaryWorld';
 import { HttpHeaders } from '@angular/common/http';
+import { Covid19IndiaDataByState } from './model/Covid19IndiaDataByState';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +35,13 @@ export class CovidDataService {
   }
   getStatesData(state:string):Observable<ListOfCovids>{
     return this.http.get<ListOfCovids>(this.baseUrl+'/covid/state?stateCode='+state);
+  }
+
+  getCovidDataOfWorld(): Observable<CovidSummaryWorld>{
+    return this.http.get<CovidSummaryWorld>('https://api.covid19api.com/summary');
+  }
+
+  getCovid19IndiaDataByDistrict(): Observable<Covid19IndiaDataByState[]>{
+    return this.http.get<Covid19IndiaDataByState[]>('https://api.covidindiatracker.com/state_data.json');
   }
 }
