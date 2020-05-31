@@ -68,7 +68,7 @@ export class StateComponent implements OnInit {
     this.dataService.getCovidData().subscribe(data => {
       this.covidObj = data.covids;
       this.covidObj.sort((a, b) => b.confirmedCase - a.confirmedCase);
-      this.barChartDataConf = this.covidObj.filter((item) => item.confirmedCase > 4000);
+      this.barChartDataConf = this.covidObj.filter(t=>t.stateCode!='OTH').slice(0,10);
       this.barChartConfirm = this.barChartDataConf.map((item) => item.confirmedCase);
       this.barChartLabels = this.barChartDataConf.map((item) => item.stateCode);
       this.StateWithMaxConfirmedCases = (this.barChartDataConf.map((item) => item.state))[0];
@@ -80,7 +80,7 @@ export class StateComponent implements OnInit {
             label: 'Total Confirmed Cases',
             data: this.barChartConfirm,
             borderColor: '#3cba9f',
-            backgroundColor: ['#239B56', '#1F618D', '#148F77', '#1E8449', '#B7950B', '#DC7633', '#A04000']
+            backgroundColor: ['#239B56', '#1F618D', '#148F77', '#1E8449', '#B7950B', '#DC7633', '#A04000','#E91E63','#FF9800','#7CB342']
           }]
         },
         options: {

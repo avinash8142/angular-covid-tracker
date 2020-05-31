@@ -128,8 +128,8 @@ export class WorldComponent implements OnInit {
      this.pieChartActive = this.pieChartDataActive.map((item) => item.TotalConfirmed - (item.TotalRecovered + item.TotalDeaths));
      this.pieChartLegendsActive = this.pieChartDataActive.map((item) => item.CountryCode);
      
-     console.log('pieChartActive', this.pieChartActive)
-     console.log('pieChartLegendsActive', this.pieChartLegendsActive)
+    //  console.log('pieChartActive', this.pieChartActive)
+    //  console.log('pieChartLegendsActive', this.pieChartLegendsActive)
      
      this.pieChart = new Chart('canvasWorldActive', {
        type: 'pie',
