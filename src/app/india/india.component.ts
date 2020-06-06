@@ -5,7 +5,7 @@ import { Covid } from '../model/covid';
 import { CovidSummary } from '../model/CovidSummary';
 import { States } from '../model/States';
 import { Chart } from 'chart.js';
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import {formatDate } from '@angular/common';
 import { CovidByDtWrapper } from '../model/CovidByDtWrapper';
 
@@ -53,7 +53,7 @@ export class IndiaComponent implements OnInit {
   lineChartState: any;
 
   faArrowUpIndia = faArrowUp;
-
+  
   stateAndDistrcitWiseData : any;
   listOfStates = [];
   listOfDistricts = [];
@@ -128,6 +128,32 @@ export class IndiaComponent implements OnInit {
     this.totalActiveCaseDiff = data.covidWraper[len - 1].activeDiff;
     this.totalRecoveredCaseDiff = data.covidWraper[len - 1].recoverDiff;
     this.totalFatalCaseDiff = data.covidWraper[len - 1].fatalDiff;
+
+    // if(this.totalConfirmedCaseDiff < 0){
+    //     this.faArrowConfirmed = faArrowDown;
+    //     console.log(this.totalConfirmedCaseDiff) 
+    // }
+    // else{
+    //   this.faArrowConfirmed = faArrowUp;
+    // }
+    // if(this.totalActiveCaseDiff < 0){
+    //   this.faArrowActive = faArrowDown; 
+    // }
+    // else{
+    //   this.faArrowActive = faArrowUp;
+    // }
+    // if(this.totalRecoveredCaseDiff < 0){
+    //   this.faArrowRecovered = faArrowDown; 
+    // }
+    // else{
+    //   this.faArrowRecovered = faArrowUp;
+    // }
+    // if(this.totalFatalCaseDiff < 0){
+    //   this.faArrowDeceased = faArrowDown; 
+    // }
+    // else{
+    //   this.faArrowDeceased = faArrowUp;
+    // }
   }
 
   covidByDt() {
@@ -195,155 +221,4 @@ export class IndiaComponent implements OnInit {
     }
 
   }
-
-  // getState() {
-  //   this.dataService.getStates().subscribe(data => {
-  //     this.states = data;
-  //     this.code = 'MH';
-  //     this.getStateData();
-  //   });
-  // }
-
-  // stateChanged(st: string) {
-  //   this.dataService.getStatesData(st).subscribe(stData => {
-  //     this.lineChartStateConfirmDiff = stData.covids.map(t => t.confirmedCaseDiff);
-  //     this.lineChartStateFatalDiff = stData.covids.map(t => t.deathDiff);
-  //     this.lineChartStateRecoverDiff = stData.covids.map(t => t.curedCaseDiff);
-  //     this.lineChartStateLabel = stData.covids.map(t => t.caseDt);
-  //     this.lineChartStateActiveDiff = stData.covids.map(t => t.activeCaseDiff);
-
-  //     this.lineChartState.config.data.datasets[0].data = this.lineChartStateConfirmDiff
-  //     this.lineChartState.config.data.labels = this.lineChartStateLabel;
-  //     this.lineChartState.config.data.datasets[0].label = 'New Cases';
-  //     this.lineChartState.update();
-  //     this.caseType = 'newCase';
-  //   });
-  // }
-
-  // caseChangedForState(caseState: string) {
-  //   if (caseState == 'recoveredCase') {
-  //     this.lineChartState.config.data.datasets[0].data = this.lineChartStateRecoverDiff;
-  //     this.lineChartState.config.data.labels = this.lineChartStateLabel;
-  //     this.lineChartState.config.data.datasets[0].label = 'Recovered Cases';
-  //     this.lineChartState.update();
-  //   } else if (caseState == 'fatalCase') {
-  //     this.lineChartState.config.data.datasets[0].data = this.lineChartStateFatalDiff;
-  //     this.lineChartState.config.data.labels = this.lineChartStateLabel;
-  //     this.lineChartState.config.data.datasets[0].label = 'Fatal Cases';
-  //     this.lineChartState.update();
-  //   } else if (caseState == 'newCase') {
-  //     this.lineChartState.config.data.datasets[0].data = this.lineChartStateConfirmDiff
-  //     this.lineChartState.config.data.labels = this.lineChartStateLabel;
-  //     this.lineChartState.config.data.datasets[0].label = 'New Cases';
-  //     this.lineChartState.update();
-  //   }
-  //   else if (caseState == 'activeCase') {
-  //     this.lineChartState.config.data.datasets[0].data = this.lineChartStateActiveDiff
-  //     this.lineChartState.config.data.labels = this.lineChartStateLabel;
-  //     this.lineChartState.config.data.datasets[0].label = 'Active Cases';
-  //     this.lineChartState.update();
-  //   }
-  // }
-
-  // getStateData() {
-  //   this.dataService.getStatesData(this.code).subscribe(data => {
-  //     this.lineChartStateConfirmDiff = data.covids.map(t => t.confirmedCaseDiff);
-  //     this.lineChartStateFatalDiff = data.covids.map(t => t.deathDiff);
-  //     this.lineChartStateRecoverDiff = data.covids.map(t => t.curedCaseDiff);
-  //     this.lineChartStateActiveDiff = data.covids.map(t => t.activeCaseDiff);
-  //     this.lineChartStateLabel = data.covids.map(t => t.caseDt);
-  //     this.caseType = 'newCase';
-  //     this.lineChartState = new Chart('lineChartStateId', {
-  //       type: 'line',
-  //       data: {
-  //         labels: this.lineChartStateLabel,
-  //         datasets: [{
-  //           label: 'New Cases',
-  //           data: this.lineChartStateConfirmDiff,
-  //           borderColor: '#78281F',
-  //           backgroundColor: '#FDEDEC',
-  //           pointBackgroundColor: '#FDFEFE'
-  //         }]
-  //       },
-  //       options: {
-  //         legend: {
-  //           labels: {
-  //             fontColor: '#145A32',
-  //           },
-  //           display: false
-  //         },
-  //         scales: {
-  //           yAxes: [{
-  //             ticks: {
-  //               beginAtZero: false
-  //             }
-  //           }]
-  //         }
-
-  //       }
-  //     });
-
-  //   });
-  // }
-
-  // getDistrict(st: string) {
-  //   this.pieChartDataComfirmedDistricts = (this.stateAndDistrcitWiseData.find(element =>  element.id == st ).districtData)
-  //                                           .filter(element => element.confirmed > 100);
-  //   this.pieChartComfirmedDistricts = this.pieChartDataComfirmedDistricts.map((item) => item.confirmed);
-  //   this.pieChartLegendsDistricts = this.pieChartDataComfirmedDistricts.map((item) => item.id)
-    
-  //   this.pieChartIndia = new Chart('canvasIndiaDistrict', {
-  //       type: 'pie',
-  //       data: {
-  //         labels: this.pieChartLegendsDistricts,
-  //         datasets: [{
-  //           data: this.pieChartComfirmedDistricts,
-  //           borderColor: '#3cba9f',
-  //           backgroundColor: ['#239B56', '#1F618D', '#148F77', '#1E8449', '#B7950B', '#DC7633', '#A04000',"#3cb371",  
-  //           "#0000FF",  
-  //           "#9966FF",  
-  //           "#4C4CFF",  
-  //           "#00FFFF",  
-  //           "#f990a7",  
-  //           "#aad2ed",  
-  //           "#FF00FF",
-  //           'Red',
-  //           'Blue'],
-  //           fill:true,
-  //         }]
-  //       },
-  //       options: {
-  //         legend: {
-  //           labels: {
-  //             fontColor: '#186A3B',
-  //           },
-  //           display: true
-  //         },
-  //         scales: {  
-  //           xAxes: [{  
-  //             display: false  
-  //           }],  
-  //           yAxes: [{  
-  //             display: false  
-  //           }],  
-  //         },
-  //         circumference : 2 * Math.PI,
-  //         animation: {
-  //           animateRotate:true,
-  //           animateScale:false
-  //         },
-  //         elements:{
-  //           point:{
-  //             radius : 2
-  //           }
-  //         }
-  //       }
-  //     }); 
-    
-  //   this.listOfDistricts = this.stateAndDistrcitWiseData.find(element =>  element.id == st ).districtData;
-
-  //   this.listOfDistrictsInRedZone = this.listOfDistricts.filter(element => element.zone == "RED");
-  //   this.listOfDistrictsInOrangeZone = this.listOfDistricts.filter(element => element.zone == "ORANGE");
-  //   this.listOfDistrictsInGreenZone = this.listOfDistricts.filter(element => element.zone == "GREEN");
-  // }
 }

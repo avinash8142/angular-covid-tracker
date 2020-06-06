@@ -14,20 +14,54 @@
     <div class="col- text-dark mt-2 ml-2">Please select a tab to view the respective dashboard.</div>
   </div>
   <nav>
-    <button mat-button class="mat-button">
-      <a routerLink="/world" routerLinkActive="active">World's Dashboard</a>
-    </button>
     <button mat-raised-button class="mat-button">
       <a routerLink="/india" routerLinkActive="active">India's Dashboard</a>
     </button>
     <button mat-raised-button class="mat-button">
       <a routerLink="/state" routerLinkActive="active">Indian-State's Dashboard</a>
     </button>
+    <button mat-button class="mat-button">
+      <a routerLink="/world" routerLinkActive="active">World's Dashboard</a>
+    </button>
   </nav>
   <router-outlet></router-outlet>
   <div class="footer">
     <div class="alert alert-danger mt-4 text-center font-weight-bold">
-      !! Stay Home Stay Safe !!
+      !! Stay Home, Stay Safe !!
     </div>
   </div>
 </div>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<!-- <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script> -->
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<!-- <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script> -->
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<!-- <script src="/__/firebase/7.14.6/firebase-app.js"></script> -->
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<!-- <script src="/__/firebase/7.14.6/firebase-analytics.js"></script> -->
+
+<!-- Initialize Firebase -->
+<!-- <script src="/__/firebase/init.js"></script> -->
+
+<!-- <script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDSe6sZLXdMdU5SYjnhv8sSGA5MmJqG7UU",
+    authDomain: "covid-dashboard-e2f84.firebaseapp.com",
+    databaseURL: "https://covid-dashboard-e2f84.firebaseio.com",
+    projectId: "covid-dashboard-e2f84",
+    storageBucket: "covid-dashboard-e2f84.appspot.com",
+    messagingSenderId: "494605219115",
+    appId: "1:494605219115:web:8ef3509b9a393e3085816e",
+    measurementId: "G-HBM58DCKXW"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script> -->

@@ -48,29 +48,45 @@
   </div>
 </div>
 <div class="row" style="margin:10px 0px 10px 0px">
-  <!-- <div class="text-dark">Districts with Confirmed cases:</div> -->
-  <canvas id="canvasIndiaDistrict"></canvas>
+  <!-- <div class="text-dark">Districts having maximum Confirmed cases:</div> -->
+  <div class="col-12">
+    <p class="text-info ml-3" style="text-align: center !important;margin-bottom: 5px!important;">Districts having maximum Confirmed cases:</p>
+    <canvas id="canvasIndiaDistrict"></canvas>
+  </div>
 </div>
 
 
-<div class="text-dark">List of districts of the selected state falling in different zones:</div>
+<div class="text-dark">List of districts of the selected state falling in different zones with confirmed cases:</div>
 <div class="row mt-3">
-  <div class="col-3">
-    <p class="text-success font-weight-bold"> Green zone districts</p>
-    <select class="custom-select" size="10">
+  <div class="col">
+    <p class="text-success font-weight-bold" style="margin-bottom: 0px !important;"> Green zone districts</p>
+    <!-- <select class="custom-select" size="20">
       <option *ngFor="let district of listOfDistrictsInGreenZone" [value]='district.id'>{{district.name}}</option>
-    </select>
+    </select> -->
+    <mat-list>
+      <mat-list-item class="border border-success rounded" style="height: 100% !important;" *ngFor="let district of listOfDistrictsInGreenZone">{{district.name}} - {{district.confirmed | number:'1.0':'en-US'}}</mat-list-item>
+    </mat-list>
   </div>
-  <div class="col-3">
-    <p class="text-warning font-weight-bold">Orange zone districts</p>
-    <select class="custom-select" size="10">
+</div>
+<div class="row mt-3">
+  <div class="col">
+    <p class="text-warning font-weight-bold" style="margin-bottom: 0px !important;">Orange zone districts</p>
+    <!-- <select class="custom-select" size="20">
       <option *ngFor="let district of listOfDistrictsInOrangeZone" [value]='district.id'>{{district.name}}</option>
-    </select>
+    </select> -->
+    <mat-list>
+      <mat-list-item class="border rounded" style="border: 1px solid orange !important; height: 100% !important;" *ngFor="let district of listOfDistrictsInOrangeZone">{{district.name}} - {{district.confirmed | number:'1.0':'en-US'}}</mat-list-item>
+    </mat-list>
   </div>
-  <div class="col-3">
-    <p class="text-danger font-weight-bold">Red zone districts</p>
-    <select class="custom-select" size="10">
+</div>
+<div class="row mt-3">
+  <div class="col">
+    <p class="text-danger font-weight-bold" style="margin-bottom: 0px !important;">Red zone districts</p>
+    <!-- <select class="custom-select" size="20">
       <option *ngFor="let district of listOfDistrictsInRedZone" [value]='district.id'>{{district.name}}</option>
-    </select>
+    </select> -->
+    <mat-list>
+      <mat-list-item class="border border-danger rounded" style="height: 100% !important;" *ngFor="let district of listOfDistrictsInRedZone">{{district.name}} - {{district.confirmed | number:'1.0':'en-US'}}</mat-list-item>
+    </mat-list>
   </div>
 </div>

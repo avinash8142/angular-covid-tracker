@@ -60,3 +60,49 @@
     <canvas id="canvasWorldDeceased"></canvas>
   </div>
 </div>
+<div class="row mt-4" style="margin: 20px 0px 20px 0px;">
+  <div class="col- text-dark ml-2 mt-1" style="text-align: center;">Please select a Country to view the outbreak:</div>
+    <div class="col- ml-2">
+      <select name="caseType" class="custom-select" [(ngModel)]="CountryCode" (change)='GetCovidDataByCountry($event.target.value)'>
+        <option *ngFor='let c of Countries' [value]='c.CountryCode'>{{c.Country}}</option>
+      </select>
+    </div>     
+</div>
+<div class="row mt-2">
+  <div class="col-3">
+    <button type="button" class="btn btn-info text-uppercase">
+      Confirmed <span class="badge badge-info-mt-2">{{totalConfirmedCasesCountry | number:'1.0':'en-US'}}</span>
+      <p style="font-size: 10px;">
+        <fa-icon [icon]="faArrowUp" class="text-white" style="font-size: 10px;"></fa-icon>
+        {{newConfirmedCasesCountry | number:'1.0':'en-US'}}
+      </p>
+    </button>
+  </div>
+  <div class="col-3">
+    <button type="button" class="btn btn-primary text-uppercase">
+      Active <span class="badge badge-primary-mt-2">{{totalActiveCasesCountry | number:'1.0':'en-US'}}</span>
+      <p style="font-size: 10px;">
+        <fa-icon [icon]="faArrowUp" class="text-white" style="font-size: 10px;"></fa-icon>
+        {{newActiveCasesCountry | number:'1.0':'en-US'}}
+      </p>
+    </button>
+  </div>
+  <div class="col-3">
+    <button type="button" class="btn btn-success text-uppercase">
+      Recovered <span class="badge badge-success-mt-2">{{totalRecoveredCasesCountry    | number:'1.0':'en-US'}}</span>
+      <p style="font-size: 10px;">
+        <fa-icon [icon]="faArrowUp" class="text-white" style="font-size: 10px;"></fa-icon>
+        {{newRecoveredCasesCountry | number:'1.0':'en-US'}}
+      </p>
+    </button>
+  </div>
+  <div class="col-3">
+    <button type="button" class="btn btn-danger text-uppercase">
+      Deceased <span class="badge badge-danger-mt-2">{{totalDeathsCasesCountry | number:'1.0':'en-US'}}</span>
+      <p style="font-size: 10px;">
+        <fa-icon [icon]="faArrowUp" class="text-white" style="font-size: 10px;"></fa-icon>
+        {{newDeathsCasesCountry | number:'1.0':'en-US'}}
+      </p>
+    </button>
+  </div>
+</div>

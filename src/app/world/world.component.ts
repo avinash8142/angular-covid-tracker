@@ -5,6 +5,7 @@ import { CountryWiseInfo } from '../model/CountryWiseInfo';
 import { CovidDataService } from '../covid-data.service';
 import { Chart } from 'chart.js';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-world',
@@ -23,6 +24,17 @@ export class WorldComponent implements OnInit {
   totalRecoveredCasesWorld:number;
   totalActiveCasesWorld: number;
   newActiveCasesWorld: number; 
+
+  newConfirmedCasesCountry:number;
+  totalConfirmedCasesCountry:number;
+  newDeathsCasesCountry:number;
+  totalDeathsCasesCountry: number;
+  newRecoveredCasesCountry: number;
+  totalRecoveredCasesCountry:number;
+  totalActiveCasesCountry: number;
+  newActiveCasesCountry: number; 
+  CountryCode: string
+
 
   faArrowUp = faArrowUp;
 
@@ -54,7 +66,7 @@ export class WorldComponent implements OnInit {
 
   ngOnInit(): void {
     this.jstoday = formatDate(this.today, 'dd-MMM-yyyy, hh:mm:ss a', 'en-US', '+0530');
-    this.covidDataByCountry();
+    this.CovidDataofAllCountry();
   }
 
   CovidWorldData(data: CovidSummaryWorld){
@@ -68,14 +80,14 @@ export class WorldComponent implements OnInit {
     this.newActiveCasesWorld = this.newConfirmedCasesWorld - (this.newRecoveredCasesWorld + this.newDeathsCasesWorld);
  }
 
- covidDataByCountry() {
+ CovidDataofAllCountry() {
    this.dataService.getCovidDataOfWorld().subscribe(data => {
      this.Countries = data.Countries;
      this.Countries.sort((a, b) => b.TotalConfirmed - a.TotalConfirmed);
      this.pieChartDataComfirmed = this.Countries.filter((item) => item.TotalConfirmed > 100000);
      this.pieChartComfirmed = this.pieChartDataComfirmed.map((item) => item.TotalConfirmed);
-     this.pieChartLegends = this.pieChartDataComfirmed.map((item) => item.CountryCode);
-     
+     //this.pieChartLegends = this.pieChartDataComfirmed.map((item) => item.Country);
+     this.pieChartLegends = this.pieChartDataComfirmed.map((item) => ((item.Country).length > 15 ? item.CountryCode : item.Country));
      this.pieChart = new Chart('canvasWorldConfirmed', {
        type: 'pie',
        data: {
@@ -126,11 +138,9 @@ export class WorldComponent implements OnInit {
 
      this.pieChartDataActive = this.Countries.filter((item) => item.TotalConfirmed - (item.TotalRecovered + item.TotalDeaths) > 50000);
      this.pieChartActive = this.pieChartDataActive.map((item) => item.TotalConfirmed - (item.TotalRecovered + item.TotalDeaths));
-     this.pieChartLegendsActive = this.pieChartDataActive.map((item) => item.CountryCode);
-     
-    //  console.log('pieChartActive', this.pieChartActive)
-    //  console.log('pieChartLegendsActive', this.pieChartLegendsActive)
-     
+     //this.pieChartLegendsActive = this.pieChartDataActive.map((item) => item.CountryCode);
+     this.pieChartLegendsActive = this.pieChartDataActive.map((item) => ((item.Country).length > 15 ? item.CountryCode : item.Country));
+
      this.pieChart = new Chart('canvasWorldActive', {
        type: 'pie',
        data: {
@@ -181,8 +191,9 @@ export class WorldComponent implements OnInit {
 
      this.pieChartDataRecovered = this.Countries.filter((item) => item.TotalRecovered > 50000);
      this.pieChartRecovered = this.pieChartDataRecovered.map((item) => item.TotalRecovered);
-     this.pieChartLegendsRecovered = this.pieChartDataRecovered.map((item) => item.CountryCode);
-   
+     //this.pieChartLegendsRecovered = this.pieChartDataRecovered.map((item) => item.CountryCode);
+     this.pieChartLegendsRecovered = this.pieChartDataRecovered.map((item) => ((item.Country).length > 15 ? item.CountryCode : item.Country));
+
      this.pieChart = new Chart('canvasWorldRecovered', {
        type: 'pie',
        data: {
@@ -233,7 +244,8 @@ export class WorldComponent implements OnInit {
 
      this.pieChartDataDeceased = this.Countries.filter((item) => item.TotalDeaths > 20000);
      this.pieChartDeceased = this.pieChartDataDeceased.map((item) => item.TotalDeaths);
-     this.pieChartLegendsDeceased = this.pieChartDataDeceased.map((item) => item.CountryCode);
+     //this.pieChartLegendsDeceased = this.pieChartDataDeceased.map((item) => item.CountryCode);
+     this.pieChartLegendsDeceased = this.pieChartDataDeceased.map((item) => ((item.Country).length > 15 ? item.CountryCode : item.Country));
      
      this.pieChart = new Chart('canvasWorldDeceased', {
        type: 'pie',
@@ -282,9 +294,21 @@ export class WorldComponent implements OnInit {
          }
        }
      });
-     this.CovidWorldData(data);
-
-     
+     this.CovidWorldData(data);  
+     this.CountryCode = 'US'
+     this.GetCovidDataByCountry(this.CountryCode);   
    });
+ }
+
+ GetCovidDataByCountry(countryCode: string){
+    let countryData = this.Countries.find(element => element.CountryCode == countryCode);
+    this.totalConfirmedCasesCountry = countryData.TotalConfirmed;
+    this.newConfirmedCasesCountry = countryData.NewConfirmed;
+    this.totalRecoveredCasesCountry = countryData.TotalRecovered;
+    this.newRecoveredCasesCountry = countryData.NewRecovered;
+    this.totalDeathsCasesCountry = countryData.TotalDeaths;
+    this.newDeathsCasesCountry = countryData.NewDeaths;
+    this.totalActiveCasesCountry = this.totalConfirmedCasesCountry - (this.totalRecoveredCasesCountry + this.totalDeathsCasesCountry);
+    this.newActiveCasesCountry = this.newConfirmedCasesCountry - (this.newRecoveredCasesCountry + this.newDeathsCasesCountry);
  }
 }
